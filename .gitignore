@@ -1,0 +1,14 @@
+# Maven build output
+/backend/target/
+
+# IDE files
+/.idea
+*.iml
+*.ipr
+*.iws
+
+# Logs
+*.log
+
+# Node
+/frontend/node_modules/
