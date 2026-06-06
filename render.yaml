@@ -1,11 +1,10 @@
 services:
   - type: web_service
     name: employee-leave-management-backend
-    env: java
+    env: docker
     plan: free
     region: oregon
-    buildCommand: cd backend && mvn clean -B -DskipTests package
-    startCommand: java -jar backend/target/employee-leave-management-1.0.0.jar
+    dockerfilePath: ./Dockerfile
     healthCheckPath: /api/health
     healthCheckTimeout: 30
     envVars:
