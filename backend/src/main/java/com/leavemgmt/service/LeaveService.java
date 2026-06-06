@@ -111,9 +111,6 @@ public class LeaveService {
         leaveRequest.setUpdatedAt(LocalDateTime.now());
         leaveRequest.setApprovedRejectedDate(LocalDateTime.now());
 
-        // Restore leaves
-        employeeService.restoreLeaveBalance(leaveRequest.getEmployee().getId(), leaveRequest.getNumberOfDays());
-
         LeaveRequest updatedLeave = leaveRequestRepository.save(leaveRequest);
         return convertToDTO(updatedLeave);
     }
@@ -129,9 +126,6 @@ public class LeaveService {
             throw new BusinessLogicException("Can only update leave requests with PENDING status");
         }
 
-        // Restore previous leave balance
-        employeeService.restoreLeaveBalance(leaveRequest.getEmployee().getId(), leaveRequest.getNumberOfDays());
-
         // Calculate new leave days
         Integer newLeaveDays = LeaveCalculationUtil.calculateLeaveDays(
                 leaveRequestDTO.getStartDate(),
@@ -141,8 +135,6 @@ public class LeaveService {
         // Check if new balance is sufficient
         Employee employee = leaveRequest.getEmployee();
         if (employee.getRemainingLeaves() < newLeaveDays) {
-            // Restore the old leave request balance
-            employeeService.updateLeaveBalance(employee.getId(), leaveRequest.getNumberOfDays());
             throw new BusinessLogicException("Insufficient leave balance for the new dates");
         }
 
@@ -166,6 +158,14 @@ public class LeaveService {
     }
 
     /**
+     * Get all leave requests
+     */
+    public Page<LeaveRequestDTO> getAllLeaveRequests(Pageable pageable) {
+        Page<LeaveRequest> leaves = leaveRequestRepository.findAll(pageable);
+        return leaves.map(this::convertToDTO);
+    }
+
+    /**
      * Get leave requests with filters
      */
     public Page<LeaveRequestDTO> getLeaveRequestsWithFilters(
@@ -178,7 +178,7 @@ public class LeaveService {
     }
 
     /**
-     * Get leave requests by department and status
+     * Get leave requests by department and optionally by status
      */
     public Page<LeaveRequestDTO> getLeaveRequestsByDepartment(
             String department, String status, Pageable pageable) {

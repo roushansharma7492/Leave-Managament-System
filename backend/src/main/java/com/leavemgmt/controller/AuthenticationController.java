@@ -3,8 +3,10 @@ package com.leavemgmt.controller;
 import com.leavemgmt.dto.AuthResponseDTO;
 import com.leavemgmt.dto.EmployeeRegistrationDTO;
 import com.leavemgmt.dto.LoginDTO;
+import com.leavemgmt.dto.ManagerRegistrationDTO;
 import com.leavemgmt.service.AuthenticationService;
 import com.leavemgmt.service.EmployeeService;
+import com.leavemgmt.service.ManagerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +27,9 @@ public class AuthenticationController {
     @Autowired
     private EmployeeService employeeService;
 
+    @Autowired
+    private ManagerService managerService;
+
     /**
      * Login endpoint
      */
@@ -42,6 +47,16 @@ public class AuthenticationController {
         employeeService.registerEmployee(registrationDTO);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body("Employee registered successfully");
+    }
+
+    /**
+     * Manager registration endpoint
+     */
+    @PostMapping("/register-manager")
+    public ResponseEntity<String> registerManager(@Valid @RequestBody ManagerRegistrationDTO registrationDTO) {
+        managerService.registerManager(registrationDTO);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Manager registered successfully");
     }
 
     /**

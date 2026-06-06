@@ -1,9 +1,6 @@
 package com.leavemgmt.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -12,9 +9,6 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Table(name = "leave_requests")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class LeaveRequest {
 
     @Id
@@ -62,6 +56,141 @@ public class LeaveRequest {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    public LeaveRequest() {
+    }
+
+    public LeaveRequest(Long id, Employee employee, LeaveType leaveType, LocalDate startDate, LocalDate endDate,
+                        Integer numberOfDays, String reason, LeaveStatus status, String managerComment, Long managerId,
+                        LocalDateTime approvedRejectedDate, LocalDateTime appliedDate, LocalDateTime createdAt,
+                        LocalDateTime updatedAt) {
+        this.id = id;
+        this.employee = employee;
+        this.leaveType = leaveType;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.numberOfDays = numberOfDays;
+        this.reason = reason;
+        this.status = status;
+        this.managerComment = managerComment;
+        this.managerId = managerId;
+        this.approvedRejectedDate = approvedRejectedDate;
+        this.appliedDate = appliedDate;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public LeaveType getLeaveType() {
+        return leaveType;
+    }
+
+    public void setLeaveType(LeaveType leaveType) {
+        this.leaveType = leaveType;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public Integer getNumberOfDays() {
+        return numberOfDays;
+    }
+
+    public void setNumberOfDays(Integer numberOfDays) {
+        this.numberOfDays = numberOfDays;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public LeaveStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(LeaveStatus status) {
+        this.status = status;
+    }
+
+    public String getManagerComment() {
+        return managerComment;
+    }
+
+    public void setManagerComment(String managerComment) {
+        this.managerComment = managerComment;
+    }
+
+    public Long getManagerId() {
+        return managerId;
+    }
+
+    public void setManagerId(Long managerId) {
+        this.managerId = managerId;
+    }
+
+    public LocalDateTime getApprovedRejectedDate() {
+        return approvedRejectedDate;
+    }
+
+    public void setApprovedRejectedDate(LocalDateTime approvedRejectedDate) {
+        this.approvedRejectedDate = approvedRejectedDate;
+    }
+
+    public LocalDateTime getAppliedDate() {
+        return appliedDate;
+    }
+
+    public void setAppliedDate(LocalDateTime appliedDate) {
+        this.appliedDate = appliedDate;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 
     /**
      * Lifecycle callbacks for audit timestamps

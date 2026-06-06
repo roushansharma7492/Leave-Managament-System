@@ -1,0 +1,81 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, system-ui, sans-serif;
+  background: radial-gradient(circle at top left, rgba(61, 134, 255, 0.18), transparent 35%),
+              radial-gradient(circle at bottom right, rgba(73, 209, 136, 0.15), transparent 30%),
+              #0f172a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #07111f 0%, #15263b 100%);
+  color: #e2e8f0;
+}
+
+.container-glow {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 24px 80px rgba(15, 41, 66, 0.45);
+  border-radius: 22px;
+}
+
+.card-glow {
+  border: none;
+  border-radius: 22px;
+  background: rgba(15, 23, 42, 0.9);
+  box-shadow: 0 24px 40px rgba(0, 0, 0, 0.28);
+}
+
+.btn-glow {
+  border-radius: 999px;
+  padding: 0.9rem 1.6rem;
+  font-weight: 600;
+}
+
+.navbar-glow {
+  background: rgba(7, 18, 33, 0.82) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.input-glow,
+.form-control,
+.form-select {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #f8fafc;
+}
+
+.input-glow:focus,
+.form-control:focus,
+.form-select:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(56, 189, 248, 0.25);
+  border-color: rgba(56, 189, 248, 0.55);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #60a5fa, #7dd3fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.table-glow {
+  background: rgba(15, 23, 42, 0.95);
+  color: #e2e8f0;
+}
+
+.card-glow-sm {
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+footer {
+  color: rgba(226, 232, 240, 0.7);
+}

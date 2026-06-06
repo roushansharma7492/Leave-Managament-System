@@ -73,14 +73,20 @@ public class ManagerController {
             @RequestParam(required = false) String status,
             @RequestParam(required = false) LocalDate startDate,
             @RequestParam(required = false) LocalDate endDate,
+            @RequestParam(required = false) String department,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "appliedDate") String sortBy,
             @RequestParam(defaultValue = "DESC") Sort.Direction direction) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sortBy));
-        Page<LeaveRequestDTO> leaves = leaveService.getLeaveRequestsWithFilters(
-                null, status, startDate, endDate, pageable
-        );
+        Page<LeaveRequestDTO> leaves;
+        if (department != null && !department.isBlank()) {
+            leaves = leaveService.getLeaveRequestsByDepartment(department, status, pageable);
+        } else {
+            leaves = leaveService.getLeaveRequestsWithFilters(
+                    null, status, startDate, endDate, pageable
+            );
+        }
         return ResponseEntity.ok(leaves);
     }
 

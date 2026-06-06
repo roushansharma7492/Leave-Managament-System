@@ -1,16 +1,10 @@
 package com.leavemgmt.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import jakarta.validation.constraints.*;
 
 /**
  * LoginDTO - Data Transfer Object for Login
  */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class LoginDTO {
 
     @NotBlank(message = "Username/Email/EmployeeID cannot be blank")
@@ -18,4 +12,28 @@ public class LoginDTO {
 
     @NotBlank(message = "Password cannot be blank")
     private String password;
+
+    public LoginDTO() {
+    }
+
+    public LoginDTO(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
